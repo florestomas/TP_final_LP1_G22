@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
+#include "cDragones.h"
 using namespace std;
+
 
 class cDragones;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 using namespace std;
 class cDragones;
 class cArmas;
@@ -20,7 +21,7 @@ public:
 	void setVida(int nueva_vida);
 	void setArma(cArmas* p);
 
-	cVikingos(string nom, int hp, int f, string ape, posicion posi, cArmas* arm);
+	cVikingos(string nom, int hp, int f, string ape, posicion posi);
 	~cVikingos();
 	
 private:

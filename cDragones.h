@@ -1,8 +1,7 @@
 #pragma once
 using namespace std;
 #include <string>
-
-class cAtaque;
+#include "cAtaque.h"
 
 class cDragones
 {
@@ -19,9 +18,12 @@ public:
 	int getVida();
 	cAtaque* getpAtaque();
 	void static baja();/*ELIMINO UN DRAKE DEL CONTADOR*/
+	void setMuerto();
+	void domar();
 
-	cDragones(string nom, int vidaa, string caract, string col, bool est,tamanio tam);
+	cDragones(string nom, int vidaa, string caract, string col,tamanio tam);
 	~cDragones();
+
 
 private:
 	string nombre;
@@ -31,6 +33,7 @@ private:
 	bool estado; /* DOMADO O SIN DOMAR */
 	cAtaque* pAtaque; /* UN PUNTERO A UN OBJETO DE LA CLASE cATAQUE */
 	tamanio tamanio_dragon;
+	bool vivo;
 
 
 };

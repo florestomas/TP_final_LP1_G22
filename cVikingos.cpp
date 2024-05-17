@@ -1,6 +1,9 @@
 #include "cVikingos.h"
+#include "cDragones.h"
+#include "cArmas.h"
+#include "cAtaque.h"
 
-cVikingos::cVikingos(string nom, int hp, int f, string ape, posicion posi, cArmas* arm)
+cVikingos::cVikingos(string nom, int hp, int f, string ape, posicion posi)
 {
 	nombre = nom;
 	vida = hp;
@@ -49,14 +52,23 @@ void cVikingos::setArma(cArmas* p)
 
 void cVikingos::atacar_dragones(cDragones* objetivo)
 {
+	int i = 1;
+
 	if (objetivo != nullptr)
 	{
 	cout << " Ataquemos a los dragones! " << endl;//xd
-
-	while ((this->getVida() > 0) || objetivo->getVida()	> 0)
+	
+	while ((this->getVida() > 0) && objetivo->getVida()	> 0)
 	{
-		objetivo.setVida( (-1) * ( (this->fuerza) * (this->arma->getDanio())) );/*A LA VIDA DEL OBJETIVO SE LE RESTAN EL DANIO DEL VIKINGO MULTIPLICADO POR EL DA—O DEL ARMA*/
-		this->setVida((-1) * (objetivo.getpAtaque().getDanio()));/* AL VIKINGO LE SETEO LA VIDA RESTANDOLE EL DANIO DEL DRAKE */
+		cout <<endl<< "Turno " << i << ": " << endl;
+		cout<<"La vida del dragon es:"<<objetivo->getVida()<< " y la vida del Vikingo es: "<< this->getVida() << endl;
+
+		objetivo->setVida( (-1) * ( (this->fuerza) * (this->arma->getDanio())) );/*A LA VIDA DEL OBJETIVO SE LE RESTAN EL DANIO DEL VIKINGO MULTIPLICADO POR EL DA—O DEL ARMA*/
+		this->setVida(( (-1)) * (objetivo->getpAtaque()->getDanio()) );/* AL VIKINGO LE SETEO LA VIDA RESTANDOLE EL DAÒO DEL DRAKE */
+
+		cout << "La vida del dragon es:" << objetivo->getVida() << " y la vida del Vikingo es: " << this->getVida() << endl;
+		i++;
+
 	}
 
 	}

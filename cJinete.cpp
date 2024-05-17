@@ -26,6 +26,7 @@ cJinete::resultBocon cJinete::getResult()
 void cJinete::setMontura(cDragones* nuevo_dragon)
 {
 	this->pDragon = nuevo_dragon;
+	nuevo_dragon->domar();
 }
 
 

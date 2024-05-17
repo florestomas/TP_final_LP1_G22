@@ -2,18 +2,29 @@
 
 int cDragones::totalDragones = 0; /* SE INICIALIZA LA VARIABLE STATIC */
 
-cDragones::cDragones(string nom, int vidaa, string caract, string col, bool est, tamanio tam)
+cDragones::cDragones(string nom, int vidaa, string caract, string col, tamanio tam)
 {
 	nombre = nom;
 	vida = vidaa;
 	caracteristica = caract;
 	color = col;
-	estado = est;
+	estado = false;
 	pAtaque = nullptr;
 	tamanio_dragon = tam;
+	vivo = true;
 }
 
 cDragones::~cDragones() {}
+
+void cDragones::setMuerto()
+{
+	this->vivo = false;
+}
+
+void cDragones::domar()
+{
+	this->estado = true;
+}
 
 void cDragones::baja()
 {
@@ -42,7 +53,7 @@ void cDragones::setVida(int nueva_vida)
 	if (this->vida <= 0)
 	{
 		baja();
-		delete this;/* LEGAL?? */
+		setMuerto();
 	}
 
 }
