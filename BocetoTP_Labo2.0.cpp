@@ -39,12 +39,7 @@ int main()
 	ChristianMartin->atacar_dragones(drake);
 
 
-	cJinete* rugbier = new cJinete("Maximo", "Thompsen", "azotador", "20-9-1998", cJinete::robusto, cJinete::desaprobado);
-	rugbier->setMontura(drake);
 
-
-
-	delete rugbier;
 	delete ChristianMartin;
 	delete drake;
 	return 0;
