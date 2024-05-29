@@ -5,7 +5,6 @@ using namespace std;
 
 class cDragones
 {
-
 public:
 	static int totalDragones;
 	enum tamanio { chico = 1, mediano, grande };
@@ -35,6 +34,4 @@ private:
 	tamanio tamanio_dragon;
 	bool vivo;
 
-
 };
-

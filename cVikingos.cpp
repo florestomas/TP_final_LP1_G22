@@ -3,6 +3,23 @@
 #include "cArmas.h"
 #include "cAtaque.h"
 
+
+cArmas* cVikingos::getArma() {	
+	if (this->arma == nullptr)
+	{
+		throw new exception("El vikingo no tiene arma \n");
+	}
+	return this->arma;
+
+}
+
+cVikingos::posicion cVikingos::getPos()
+{
+	return this->pos;
+}
+
+
+
 cVikingos::cVikingos(string nom, int hp, int f, string ape, posicion posi)
 {
 	nombre = nom;
@@ -47,11 +64,36 @@ bool cVikingos::dragones_terminados()
 
 void cVikingos::setArma(cArmas* p)
 {
+	if (p == nullptr)
+	{
+		throw new exception("No se le está asignando ningun arma");
+	}
 	this->arma = p;/* EL PUNTERO AHORA APUNTA A UN OBJETO DE LA CLASE cARMAS*/
+	
 }
 
 void cVikingos::atacar_dragones(cDragones* objetivo)
 {
+	/* SI EL VIKINGO NO TIENE ARMA Y SE ESTÁ POR PEGAR CON UN DRAGON, SE LA CRAFTE ANANANASHE DE RUTA GOD XD*/
+	try {
+		cArmas* prueba = this->getArma();
+	}
+	catch (exception* e)
+	{
+		cout << e->what();
+		if (this->pos == cVikingos::herrero)
+		{
+			cArmas* nuevaArma = new cArmas("Faka oxidada", 2);
+			this->setArma(nuevaArma);
+		}
+
+	}
+
+
+	if (objetivo == nullptr)
+	{
+		exception* e = new exception("No existe el dragon al que se quiere atacar");
+	}
 	int i = 1;
 
 	if (objetivo != nullptr)

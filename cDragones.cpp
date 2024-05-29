@@ -60,6 +60,10 @@ void cDragones::setVida(int nueva_vida)
 
 void cDragones::setAtaque(cAtaque* nuevo_ataque)
 {
+	if ( nuevo_ataque == nullptr)
+	{
+		throw new exception("No se le puede asignar el ataque");
+	}
 	/*LA VARIABLE PUNTERO DE 'cAtaque' DEL DRAGON, AHORA APUNTARÁ A UN OBJETO DE ESTA MISMA CLASE*/
 	pAtaque = nuevo_ataque;
 }

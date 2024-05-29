@@ -1,8 +1,7 @@
 #include "cAtaque.h"
 
-cAtaque::cAtaque(tipo_ataque ta, int danioo) {
+cAtaque::cAtaque(int danioo) {
 	
-	tAtaque = ta;
 	danio = danioo;
 }
 cAtaque::~cAtaque() {}
@@ -11,3 +10,4 @@ int cAtaque::getDanio() {
 	return this->danio;
 }
 
+/* PODRIAMOS HACER UN RAND PARA PROBABILIDAD DE CRITICO */

@@ -25,6 +25,12 @@ cJinete::resultBocon cJinete::getResult()
 
 void cJinete::setMontura(cDragones* nuevo_dragon)
 {
+	
+	if (nuevo_dragon == nullptr)
+	{
+		throw new exception ("No se le pudo asignar el dragon");
+	}
+
 	this->pDragon = nuevo_dragon;
 	nuevo_dragon->domar();
 }

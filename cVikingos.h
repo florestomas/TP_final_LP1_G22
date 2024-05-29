@@ -9,11 +9,14 @@ class cArmas;
 class cVikingos
 {
 public:
-	enum posicion { granjero = 1, plomero, carpintero, herrero };
+	enum posicion { granjero = 1, pescador , carpintero, herrero };
 
 	void trabajar();
 	bool dragones_terminados();
 	void atacar_dragones(cDragones* objetivo);
+	cArmas* getArma();
+	posicion getPos();
+
 
 	unsigned int getContDragones();
 	int getVida();

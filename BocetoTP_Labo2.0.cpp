@@ -14,9 +14,9 @@ int main()
 
 
 		/*  CREO LOS TIPOS DE ATAQUE QUE PUEDEN EXISTIR */
-	cAtaque ataque1(cAtaque::fuego, 500);
-	cAtaque ataque2(cAtaque::garras, 300);
-	cAtaque ataque3(cAtaque::muerde, 300);
+	cAtaque ataque1(500);
+	cAtaque ataque2(300);
+	cAtaque ataque3(300);
 
 	/* CREO SUS RESPECTIVOS PUNTEROS */
 	cAtaque* pAtaque1 = &ataque1;
@@ -34,7 +34,7 @@ int main()
 	cArmas arma1("Garrote", 3);
 
 	cVikingos* ChristianMartin = new cVikingos("Bobina", 2500, 300, "Martin", cVikingos::herrero);
-	ChristianMartin->setArma(&arma1);
+	//ChristianMartin->setArma(&arma1);
 
 	ChristianMartin->atacar_dragones(drake);
 
