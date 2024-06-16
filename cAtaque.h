@@ -1,21 +1,47 @@
 #pragma once
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 class cVikingos;
 
 class cAtaque
 {
 
-public: 
-	  //void atacar(cVikingos* vikingo_atacar);
-	  virtual int getDanio();
-	  
-	  //void setTipoAtaque(tipo_ataque nuevo_ataque);
+public:
+	 virtual int getDanio() = 0;
 
-	  cAtaque(int danioo);
-	  virtual ~cAtaque();
+	 cAtaque(const int danioo);
+	 virtual ~cAtaque();
 
-private:
-	int danio;
+protected:
+	 const int danio;
 
 };
 
+class cBolaDeFuego : public cAtaque
+{
+public:
+	cBolaDeFuego();
+	int getDanio() override;
+
+};
+
+
+class cHidroImpulso : public cAtaque
+{
+public:
+	cHidroImpulso();
+	int getDanio() override;
+
+};
+
+
+class cPedrada : public cAtaque
+{
+public:
+	cPedrada();
+	int getDanio() override;
+
+};

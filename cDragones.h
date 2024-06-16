@@ -1,37 +1,81 @@
 #pragma once
 using namespace std;
 #include <string>
-#include "cAtaque.h"
+
+class cAtaque;
 
 class cDragones
 {
 public:
+	
 	static int totalDragones;
 	enum tamanio { chico = 1, mediano, grande };
 
-	void setNombre(string nuevo_nombre);
-	void setAtaque(cAtaque* nuevo_ataque);
+
+	/*~~~~~~~~~~~~~~~~~ SETTERS ~~~~~~~~~~~~~~~~~*/
+	
+	void setApodo(string nuevo_nombre);
+	virtual void setAtaque(cAtaque* nuevo_ataque);
 	void setVida(int nueva_vida);
+
+	/*~~~~~~~~~~~~~~~~~ GETTERS ~~~~~~~~~~~~~~~~~*/
 
 	bool getEstado(); /*ME INFORMA SI ESTA DOMADO O NO*/
 	int getVida();
+	string getNombre();
 	cAtaque* getpAtaque();
-	void static baja();/*ELIMINO UN DRAKE DEL CONTADOR*/
+
+	/*~~~~~~~~~~~~~~~~~ MÉTODOS ADMINISTRACION ~~~~~~~~~~~~~~~~~*/
+
+	void static baja();//Elimino un dragon del contador
 	void setMuerto();
 	void domar();
 
-	cDragones(string nom, int vidaa, string caract, string col,tamanio tam);
-	~cDragones();
+
+	cDragones(string nom, string caract, string col);
+	virtual ~cDragones();
 
 
-private:
+protected:
 	string nombre;
 	int vida;
 	string caracteristica;
 	string color;
-	bool estado; /* DOMADO O SIN DOMAR */
-	cAtaque* pAtaque; /* UN PUNTERO A UN OBJETO DE LA CLASE cATAQUE */
+	bool estado; //Domado o sin domar
+	cAtaque* pAtaque;
 	tamanio tamanio_dragon;
 	bool vivo;
 
 };
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DRAGON DE FUEGO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+class cDragonFuego : public cDragones
+{
+public:
+	cDragonFuego(string _nom, string _caracte, string _color);
+	void setAtaque(cAtaque* nuevo_ataque) override;
+};
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DRAGON DE AGUA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+class cDragonAgua : public cDragones
+{
+public:
+	cDragonAgua(string _nom, string _caracte, string _color);
+	void setAtaque(cAtaque* nuevo_ataque) override;
+
+};
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DRAGON DE PIEDRA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+class cDragonPiedra : public cDragones
+{
+public:
+	cDragonPiedra(string _nom, string _caracte, string _color);
+	void setAtaque(cAtaque* nuevo_ataque) override;
+};
+
+

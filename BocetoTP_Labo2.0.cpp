@@ -5,42 +5,59 @@
 #include "cArmas.h"
 #include "cVikingos.h"
 #include "cJinete.h"
-
+#include "cIsla.h"
 #include <list>
 
-int main()
-{
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EXPERIMENTO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+int main() {
+
+	/*SE CREAN LOS OBJETOS */
+	
+		cJinete* jinete1 = new cJinete ("Ricardo","Cirne","Chirne","23/04/1950");
+		cJinete* jinete2 = new cJinete("Theodore","Campos","Teo","14/11/1995");
+		cJinete* jinete3 = new cJinete("Mathew","Balero","Mat","30/01/1983");
+
+		cAtaque* aPiedra = new cPedrada();
+		cAtaque* aAgua = new cHidroImpulso();
+		cAtaque* aFuego = new cBolaDeFuego();
+
+		cDragones* drake1 = new cDragonFuego("Alacambiante", "Veloz", "Rojo");
+		cDragones* drake2 = new cDragonAgua("Skrill", "Cuerpo con espinas", "Violeta");
+		cDragones* drake3 = new cDragonPiedra("Gronckle", "Cola en forma de roca", "Marron");
+
+		cArmas* arko = new cArco();
+		cArmas* acha = new cHacha();
+		cArmas* espadinhia = new cEspada();
+		
+		cVikingos* vicky1 = new cVikingos("Vick", "Ingo");
+		cVikingos* vicky2 = new cVikingos("Elvi", "Kingo");
+		cVikingos* vicky3 = new cVikingos("Osbaldo", "Santillan");//cualquiera
+
+		cIsla IslaDeBerk;
+
+		
 
 
-		/*  CREO LOS TIPOS DE ATAQUE QUE PUEDEN EXISTIR */
-	cAtaque ataque1(500);
-	cAtaque ataque2(300);
-	cAtaque ataque3(300);
+	delete jinete1;
+	delete jinete2;
+	delete jinete3;
 
-	/* CREO SUS RESPECTIVOS PUNTEROS */
-	cAtaque* pAtaque1 = &ataque1;
-	cAtaque* pAtaque2 = &ataque2;
-	cAtaque* pAtaque3 = &ataque3;
+	delete aPiedra;
+	delete aAgua;
+	delete aFuego;
 
-	/* GENERAMOS UN DRAGON */
-	cDragones* drake = new cDragones("Drake", 2000, "Es albino", "Blanco", cDragones::chico);
-	drake->setAtaque(pAtaque1);
+	delete drake1;
+	delete drake2;
+	delete drake3;
 
-	cout << "Drake hace " << drake->getpAtaque()->getDanio() << " De danio" << endl;
+	delete arko;
+	delete acha;
+	delete espadinhia;
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-	cArmas arma1("Garrote", 3);
-
-	cVikingos* ChristianMartin = new cVikingos("Bobina", 2500, 300, "Martin", cVikingos::herrero);
-	//ChristianMartin->setArma(&arma1);
-
-	ChristianMartin->atacar_dragones(drake);
+	delete vicky1;
+	delete vicky2;
+	delete vicky3;
 
 
-
-	delete ChristianMartin;
-	delete drake;
 	return 0;
 }

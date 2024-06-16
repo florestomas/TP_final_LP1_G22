@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include "cDragones.h"
 using namespace std;
 
 
@@ -18,10 +17,10 @@ public:
 
 	void setMontura(cDragones* nuevo_dragon);
 
-	cJinete(string nom, string ape, string apo, string fNc, caract_fisicas caract, resultBocon resultado);
+	cJinete(string nom, string ape, string apo, string fNc);
 	~cJinete();
 
-private:
+protected:
 	string nombre;
 	string apellido;
 	string apodo;
@@ -30,4 +29,3 @@ private:
 	resultBocon result;
 	cDragones* pDragon;
 };
-

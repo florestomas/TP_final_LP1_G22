@@ -7,7 +7,7 @@
 cArmas* cVikingos::getArma() {	
 	if (this->arma == nullptr)
 	{
-		throw new exception("El vikingo no tiene arma \n");
+		throw new exception("El vikingo no tiene arma");
 	}
 	return this->arma;
 
@@ -20,13 +20,19 @@ cVikingos::posicion cVikingos::getPos()
 
 
 
-cVikingos::cVikingos(string nom, int hp, int f, string ape, posicion posi)
+cVikingos::cVikingos(string nom, string ape)
 {
+	srand(time(NULL));
+	int fuercinhia = rand() % (5) + 1;
+
+//static_cast para generar una posicion en la isla al azar la cual esta relacionada con la fuerza (el pescador más debil que el herrero por ej)
+	posicion posi_aux = static_cast<posicion>(fuercinhia);
+
 	nombre = nom;
-	vida = hp;
-	fuerza = f;
+	vida = 2500;
+	fuerza = fuercinhia;
 	apellido = ape;
-	pos = posi;
+	pos = posi_aux;
 	contador_dragones = 0;
 	arma = nullptr;
 }
@@ -74,19 +80,23 @@ void cVikingos::setArma(cArmas* p)
 
 void cVikingos::atacar_dragones(cDragones* objetivo)
 {
-	/* SI EL VIKINGO NO TIENE ARMA Y SE ESTÁ POR PEGAR CON UN DRAGON, SE LA CRAFTE ANANANASHE DE RUTA GOD XD*/
+	/* SI EL VIKINGO NO TIENE ARMA, ES UN HERRERO Y SE ESTÁ POR PEGAR CON UN DRAGON, SE LA CRAFTEA */
 	try {
-		cArmas* prueba = this->getArma();
+		this->getArma();
 	}
 	catch (exception* e)
 	{
 		cout << e->what();
 		if (this->pos == cVikingos::herrero)
 		{
-			cArmas* nuevaArma = new cArmas("Faka oxidada", 2);
+			cArmas* nuevaArma = new cArmas(300);
 			this->setArma(nuevaArma);
 		}
-
+		else
+		{
+			cArmas* punios = new cArmas(80);
+			this->setArma(punios);
+		}
 	}
 
 
@@ -100,17 +110,28 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 	{
 	cout << " Ataquemos a los dragones! " << endl;//xd
 	
+
+
 	while ((this->getVida() > 0) && objetivo->getVida()	> 0)
 	{
 		cout <<endl<< "Turno " << i << ": " << endl;
-		cout<<"La vida del dragon es:"<<objetivo->getVida()<< " y la vida del Vikingo es: "<< this->getVida() << endl;
+		cout<<"La vida del dragon es: "<<objetivo->getVida()<< " y la vida del Vikingo es: "<< this->getVida() << endl;
 
-		objetivo->setVida( (-1) * ( (this->fuerza) * (this->arma->getDanio())) );/*A LA VIDA DEL OBJETIVO SE LE RESTAN EL DANIO DEL VIKINGO MULTIPLICADO POR EL DAÑO DEL ARMA*/
-		this->setVida(( (-1)) * (objetivo->getpAtaque()->getDanio()) );/* AL VIKINGO LE SETEO LA VIDA RESTANDOLE EL DAñO DEL DRAKE */
+		
+		/* Hay que aclarar que el 'setVida()' a la vida actual le suma lo que se le pasa como parametro */
+
+
+		/*A LA VIDA DEL OBJETIVO SE LE RESTAN EL DANIO DEL VIKINGO MULTIPLICADO POR EL DAÑO DEL ARMA*/
+		objetivo->setVida( (-1) * ( (this->fuerza) * (this->arma->getDanio()) ) );
+
+		cout << objetivo->getNombre();
+		/* AL VIKINGO LE SETEO LA VIDA RESTANDOLE EL DAñO DEL DRAKE */
+		this->setVida(  (-1) * (objetivo->getpAtaque()->getDanio() ) );
 
 		cout << "La vida del dragon es:" << objetivo->getVida() << " y la vida del Vikingo es: " << this->getVida() << endl;
+		
+		
 		i++;
-
 	}
 
 	}
@@ -119,7 +140,24 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 
 void cVikingos::trabajar()
 {
-	/*A DEFINIR*/
+	if (pos == granjero)
+	{
+		cout << "Trabajando en la granja..." << endl;
+		return;
+	}
+	else if (pos == pescador)
+	{
+		cout << "Pescando..." << endl;
+		return;
+	}
+	else if (pos == carpintero)
+	{
+		cout << "Trabajando en la carpinteria..." << endl;
+		return;
+	}
+	
+		cout << "Trabajando en la fragua..." << endl;
+		
 }
 
 

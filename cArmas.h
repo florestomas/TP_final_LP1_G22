@@ -5,13 +5,35 @@ using namespace std;
 class cArmas
 {
 public:
-	cArmas(string nom, int d);
-	~cArmas();
+	cArmas(const int d);
+	virtual ~cArmas();
 
-	int getDanio();
+	const int getDanio();
+	string getNombre();
 
-private:
+protected:
 	string nombre;
-	int danio;
+	const int danio;
 };
 
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARCO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+class cArco : public cArmas {
+	public:
+		cArco();
+	
+};
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HACHA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+class cHacha : public cArmas {
+	public:
+		cHacha();
+};
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ESPADA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+class cEspada : public cArmas {
+public:
+	cEspada();
+};

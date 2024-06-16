@@ -1,13 +1,27 @@
 #include "cArmas.h"
 
-cArmas::cArmas(string nom, int d)
-{
-	nombre = nom;
-	danio = d;
-}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLASE PADRE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+cArmas::cArmas(const int d): danio(d){}
 cArmas::~cArmas() {}
 
-int cArmas::getDanio()
+const int cArmas::getDanio()
 {
 	return this->danio;
 }
+
+string cArmas::getNombre() {
+	return this->nombre;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARCO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+cArco::cArco() :cArmas(300) {}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ HACHA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+cHacha::cHacha() : cArmas(400) {}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ESPADA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+cEspada::cEspada() :cArmas(500){}

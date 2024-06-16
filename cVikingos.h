@@ -9,7 +9,7 @@ class cArmas;
 class cVikingos
 {
 public:
-	enum posicion { granjero = 1, pescador , carpintero, herrero };
+	enum posicion { granjero = 1, pescador , carpintero, herrero, guerrero };
 
 	void trabajar();
 	bool dragones_terminados();
@@ -24,7 +24,7 @@ public:
 	void setVida(int nueva_vida);
 	void setArma(cArmas* p);
 
-	cVikingos(string nom, int hp, int f, string ape, posicion posi);
+	cVikingos(string nom, string ape);
 	~cVikingos();
 	
 private:
