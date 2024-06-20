@@ -24,6 +24,8 @@ public:
 	int getVida();
 	string getNombre();
 	cAtaque* getpAtaque();
+	bool getVivo();
+	tamanio getTamanio();
 
 	/*~~~~~~~~~~~~~~~~~ MÉTODOS ADMINISTRACION ~~~~~~~~~~~~~~~~~*/
 

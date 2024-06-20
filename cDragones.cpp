@@ -110,7 +110,21 @@ void cDragones::setAtaque(cAtaque* nuevo_ataque)
 
 cAtaque* cDragones::getpAtaque()
 {
+	if (pAtaque == nullptr)
+	{
+		throw new exception("El dragon no sabe ningun ataque");
+	}
 	return this->pAtaque;
+}
+
+bool cDragones::getVivo()
+{
+	return vivo;
+}
+
+cDragones::tamanio cDragones::getTamanio()
+{
+	return tamanio_dragon;
 }
 
 
@@ -124,10 +138,19 @@ void cDragonFuego::setAtaque(cAtaque* nuevo_ataque)
 	if (nuevo_ataque == nullptr)
 	{
 		throw new exception("No se le puede asignar el ataque");
+		return;
+	}
+
+	/* SI EL ATAQUE QUE SE LE INTENTA AGREGAR NO ES EL DE SU TIPO DE DRAGON PERO ES MORDIDA (ATAQUE DEFAULT) SE LE AGREGA IGUAL */
+	cMordida* aux1 = dynamic_cast<cMordida*>(nuevo_ataque);
+	if (aux1 != nullptr)
+	{
+		pAtaque = nuevo_ataque;
+		return;
 	}
 
 	cBolaDeFuego* aux = dynamic_cast<cBolaDeFuego*>(nuevo_ataque);
-	if (aux == nullptr)
+	if (aux == nullptr )
 	{
 		throw new exception("Los dragones de fuego solo pueden aprender ataques de fuego!");
 		return;
@@ -145,6 +168,15 @@ void cDragonAgua::setAtaque(cAtaque* nuevo_ataque)
 	if (nuevo_ataque == nullptr)
 	{
 		throw new exception("No se le puede asignar el ataque");
+		return;
+	}
+
+	/* SI EL ATAQUE QUE SE LE INTENTA AGREGAR NO ES EL DE SU TIPO DE DRAGON PERO ES MORDIDA (ATAQUE DEFAULT) SE LE AGREGA IGUAL */
+	cMordida* aux1 = dynamic_cast<cMordida*>(nuevo_ataque);
+	if (aux1 != nullptr)
+	{
+		pAtaque = nuevo_ataque;
+		return;
 	}
 
 	cHidroImpulso* aux = dynamic_cast<cHidroImpulso*>(nuevo_ataque);
@@ -166,6 +198,15 @@ void cDragonPiedra::setAtaque(cAtaque* nuevo_ataque)
 	if (nuevo_ataque == nullptr)
 	{
 		throw new exception("No se le puede asignar el ataque");
+		return;
+	}
+
+	/* SI EL ATAQUE QUE SE LE INTENTA AGREGAR NO ES EL DE SU TIPO DE DRAGON PERO ES MORDIDA (ATAQUE DEFAULT) SE LE AGREGA IGUAL */
+	cMordida* aux1 = dynamic_cast<cMordida*>(nuevo_ataque);
+	if (aux1 != nullptr)
+	{
+		pAtaque = nuevo_ataque;
+		return;
 	}
 
 	cPedrada* aux = dynamic_cast<cPedrada*>(nuevo_ataque);

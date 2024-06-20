@@ -17,9 +17,11 @@ int cBolaDeFuego::getDanio()
 	cout << " tiro una bola de fuego!" << endl;
 	int aux = rand() % (11) + 1;
 
-		if(aux > 7)
-			return (danio*(1.5));
-
+	if (aux > 7)
+	{
+		cout << " Fue un golpe critico!" << endl;
+		return (danio * (1.5));
+	}
 	return danio;
 }
 
@@ -31,11 +33,12 @@ cHidroImpulso::cHidroImpulso() : cAtaque(600) {}
 int cHidroImpulso::getDanio()
 {
 	srand(time(NULL));
-	cout << " tiro un hidro impulso!" << endl;
+	cout << " tiro un hidro-impulso!" << endl;
 	int aux = rand() % (11) + 1;
 
 	if (aux > 7)
 	{
+		cout << " Fue un golpe critico!" << endl;
 		return (danio * 1.5);
 	}
 
@@ -45,7 +48,7 @@ int cHidroImpulso::getDanio()
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ATAQUE DE PIEDRA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 
-cPedrada::cPedrada(): cAtaque(777) {}
+cPedrada::cPedrada(): cAtaque(700) {}
 
 int cPedrada::getDanio()
 {
@@ -55,8 +58,27 @@ int cPedrada::getDanio()
 
 	if (aux > 7)
 	{
+		cout << " Fue un golpe critico!" << endl;
 		return (danio * 1.5);
 	}
 
+	return danio;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ MORDIDA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+cMordida::cMordida() : cAtaque(400){}
+
+int cMordida::getDanio()
+{
+	srand(time(NULL));
+	cout << " mordio al enemigo!" << endl;
+	int aux = rand() % (11) + 1;
+
+	if (aux > 7)
+	{
+		cout << " Fue un golpe critico!" << endl;
+		return (danio * 1.5);
+	}
 	return danio;
 }

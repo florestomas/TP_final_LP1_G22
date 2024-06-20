@@ -10,7 +10,6 @@ cArmas* cVikingos::getArma() {
 		throw new exception("El vikingo no tiene arma");
 	}
 	return this->arma;
-
 }
 
 cVikingos::posicion cVikingos::getPos()
@@ -102,12 +101,18 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 
 	if (objetivo == nullptr)
 	{
-		exception* e = new exception("No existe el dragon al que se quiere atacar");
+		throw new exception("No existe el dragon al que se quiere atacar");
+		return;
 	}
+
+	if (objetivo->getVivo() == false)
+	{
+		throw new exception("No se puede atacar un dragon que no este vivo!");
+		return;
+	}
+
 	int i = 1;
 
-	if (objetivo != nullptr)
-	{
 	cout << " Ataquemos a los dragones! " << endl;//xd
 	
 
@@ -134,7 +139,7 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 		i++;
 	}
 
-	}
+
 	return;
 }
 
