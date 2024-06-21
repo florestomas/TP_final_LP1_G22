@@ -9,10 +9,10 @@ public:
 	virtual ~cArmas();
 
 	const int getDanio();
-	string getNombre();
+
+	string toStringAr() const;
 
 protected:
-	string nombre;
 	const int danio;
 };
 

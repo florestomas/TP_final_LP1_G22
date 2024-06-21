@@ -16,7 +16,10 @@ public:
 	
 	void setApodo(string nuevo_nombre);
 	virtual void setAtaque(cAtaque* nuevo_ataque);
+	virtual bool ataqueAprendible(cAtaque* p);
 	void setVida(int nueva_vida);
+	void curar();
+	void CriarDragonGrande();
 
 	/*~~~~~~~~~~~~~~~~~ GETTERS ~~~~~~~~~~~~~~~~~*/
 
@@ -26,6 +29,8 @@ public:
 	cAtaque* getpAtaque();
 	bool getVivo();
 	tamanio getTamanio();
+
+	string toStringD() const;
 
 	/*~~~~~~~~~~~~~~~~~ MÉTODOS ADMINISTRACION ~~~~~~~~~~~~~~~~~*/
 
@@ -58,6 +63,7 @@ class cDragonFuego : public cDragones
 public:
 	cDragonFuego(string _nom, string _caracte, string _color);
 	void setAtaque(cAtaque* nuevo_ataque) override;
+	bool ataqueAprendible(cAtaque* p) override;
 };
 
 
@@ -68,6 +74,7 @@ class cDragonAgua : public cDragones
 public:
 	cDragonAgua(string _nom, string _caracte, string _color);
 	void setAtaque(cAtaque* nuevo_ataque) override;
+	bool ataqueAprendible(cAtaque* p) override;
 
 };
 
@@ -78,6 +85,8 @@ class cDragonPiedra : public cDragones
 public:
 	cDragonPiedra(string _nom, string _caracte, string _color);
 	void setAtaque(cAtaque* nuevo_ataque) override;
+	bool ataqueAprendible(cAtaque* p) override;
+
 };
 
 

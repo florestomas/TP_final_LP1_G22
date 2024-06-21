@@ -1,5 +1,5 @@
 #include "cArmas.h"
-
+#include <sstream>
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLASE PADRE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 cArmas::cArmas(const int d): danio(d){}
@@ -10,8 +10,11 @@ const int cArmas::getDanio()
 	return this->danio;
 }
 
-string cArmas::getNombre() {
-	return this->nombre;
+string cArmas::toStringAr() const
+{
+    stringstream ss;
+    ss << danio << " de danio";
+    return ss.str();
 }
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ARCO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

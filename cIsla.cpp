@@ -55,10 +55,12 @@ void cIsla::operator-(cDragones* p)
 	list<cDragones*>::iterator it = dragoncinhios.begin();
 	while (it != dragoncinhios.end())
 	{
-		if (*(it) == p)
-		{
-			dragoncinhios.erase(it);
+		if (*it == p) {
+			it = dragoncinhios.erase(it);
 			return;
+		}
+		else {
+			it++;
 		}
 	}
 	throw new exception("No se encontró el dragón a eliminar");
@@ -86,13 +88,13 @@ bool cIsla::MonturaDoble(cDragones* drake)
 	{
 		aux = *it2;
 
-		if (aux->getpDragones() == drake)
+		if (compararDragones(aux,drake) == true) //Para esquivar la excepcion que me puede saltar de un dragon que no se le asigno a un jinete (no me hace problema, solo quiero ver si esta repetido el elemento) hicimos esta funcion friend
 		{
-			contJinetes++;
+				contJinetes++;
 		}
 		if (contJinetes >= 2)
 		{
-			cout << " El dragon grande ya tiene 2 jinetes " << endl;
+			cout << " El dragon grande ya tiene 2 jinetes asignados, no se pudo asignar un tercero..." << endl;
 			return false;
 		}
 		it2++;
@@ -102,3 +104,44 @@ bool cIsla::MonturaDoble(cDragones* drake)
 	return true;
 
 }
+
+void cIsla::eliminarVikingo(cVikingos* p)
+{
+	list<cVikingos*>::iterator it = vikinguitos.begin();
+	while (it != vikinguitos.end())
+	{
+		if (*it == p) {
+			it = vikinguitos.erase(it);
+			return;
+		}
+		else {
+			it++;
+		}
+	}
+}
+
+void cIsla::imprimirVikingos()
+{
+	list<cVikingos*>::iterator it = vikinguitos.begin();
+	cVikingos* aux = nullptr;
+
+	while (it != vikinguitos.end())
+	{
+		aux = *it;
+		cout << aux->getNombre() << endl;
+		it++;
+	}
+}
+void cIsla::imprimirJinetes()
+{
+	list<cJinete*>::iterator it = jinetecinhios.begin();
+	cJinete* aux = nullptr;
+
+	while (it != jinetecinhios.end())
+	{
+		aux = *it;
+		cout << aux->getNombre() << endl;
+		it++;
+	}
+}
+

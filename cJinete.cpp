@@ -3,6 +3,8 @@
 #include "cAtaque.h"
 #include <iostream>
 
+#include <sstream>
+
 using namespace std;
 
 cJinete::cJinete(string nom, string ape, string apo, string fNc)
@@ -27,6 +29,58 @@ cJinete::cJinete(string nom, string ape, string apo, string fNc)
 }
 
 cJinete::~cJinete() {}
+
+string cJinete::toStringJ() const
+{
+
+	stringstream ss;
+	ss << endl;
+	ss << "Jinete: " << nombre << " " << apellido << " (" << apodo << "), ";
+	ss << "Fecha de nacimiento: " << fNac << ", ";
+	
+	ss << "Caracteristicas fisicas: ";
+	switch (caracteristicas) {
+	case alto:
+		ss << "Alto, ";
+		break;
+	case flaco:
+		ss << "Flaco, ";
+		break;
+	case robusto:
+		ss << "Robusto, ";
+		break;
+	}
+	
+	ss << "Resultado Bocon: ";
+	switch (result) {
+	case no_asistio:
+		ss << "No asistio, ";
+		break;
+	case aprobado:
+		ss << "Aprobado, ";
+		break;
+	case desaprobado:
+		ss << "Desaprobado, ";
+		break;
+	case primero:
+		ss << "Primero";
+		break;
+	case ultimo:
+		ss << "Ultimo, ";
+		break;
+	}
+	
+	ss << "Dragon: ";
+	if (pDragon != nullptr) {
+		ss << "Asignado.";
+	}
+	else {
+		ss << "Sin dragon asignado.";
+	}
+	ss << endl;
+	return ss.str();
+
+}
 
 string cJinete::getNombre()
 {
@@ -53,16 +107,27 @@ void cJinete::setMontura(cDragones* nuevo_dragon)
 	{
 		throw new exception("No se puede asignar un dragon que no existe");
 	}
+	
+	if (nuevo_dragon->getEstado() == false)
+	{
+		cout << "El dragon es salvaje, no se puede establecer como montura" << endl;
+		return;
+	}
 	this->pDragon = nuevo_dragon;
 }
 
-void cJinete::atacarDragones(cDragones* objetivo)
+cDragones* cJinete::atacarDragones(cDragones *&objetivo)
 {
 	if (objetivo == nullptr)
 	{
 		throw new exception("No se encontro el objetivo");
-		return;
 	}
+	
+	if (objetivo->getVivo() == false)
+	{
+		throw new exception("Solo se pueden atacar a dragones vivos");
+	}
+
 
 	/*ME FIJO SI EL DRAGON ALIADO TIENE UN ATAQUE APRENDIDO, SI NO, PELEA CON EL ATAQUE POR DEFAULT*/
 	try {
@@ -70,7 +135,7 @@ void cJinete::atacarDragones(cDragones* objetivo)
 	}
 	catch (const exception* e)
 	{
-		cout << e->what() << endl
+		cout << e->what() <<" (dragon aliado) " << endl
 			;
 		cAtaque* ataque_default1 = new cMordida();
 		pDragon->setAtaque(ataque_default1);
@@ -82,8 +147,7 @@ void cJinete::atacarDragones(cDragones* objetivo)
 	}
 	catch (const exception* e2)
 	{
-		cout << e2->what() << endl
-			;
+		cout << e2->what() <<" (dragon enemigo) "<< endl;
 		cAtaque* ataque_default2 = new cMordida();
 		objetivo->setAtaque(ataque_default2);
 	}
@@ -118,8 +182,29 @@ void cJinete::atacarDragones(cDragones* objetivo)
 
 		i++;
 	}
+
+	if (pDragon->getVida() < 0)
+	{
+		cout << endl << "El dragon del jinete fallecio en batalla..." << endl;
+		pDragon->setMuerto();
+		pDragon->baja();
+		pDragon = nullptr;
+		return pDragon;
+	}
+	
+		cout << endl << "El dragon enemigo fallecio en batalla..." << endl;
+		objetivo->setMuerto();
+		objetivo->baja();
+		return objetivo;
+	
+	
 }
 
-
-
-
+bool compararDragones(cJinete* jinete, cDragones* p)
+{
+	if (jinete->pDragon == p)
+	{
+		return true;
+	}
+	return false;
+}

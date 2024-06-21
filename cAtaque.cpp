@@ -1,7 +1,14 @@
 #include "cAtaque.h"
-
+#include <sstream>
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLASE PADRE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+string cAtaque::toStringA() const
+{
+	stringstream ss;
+	ss << "Ataque: " << danio << " de danio";
+	return ss.str();
+}
 
 cAtaque::cAtaque(int danioo) : danio(danioo) {}
 cAtaque::~cAtaque() {}

@@ -29,8 +29,24 @@ public:
 	friend ostream& operator<<(ostream& os, cIsla& isla);
 
 	bool MonturaDoble(cDragones* drake);
+	
+	void eliminarVikingo(cVikingos* p);
+	void imprimirVikingos();
+	void imprimirJinetes();
+	
+	/* PARA RECORRER LAS LISTAS */
+	list<cDragones*>::iterator getDragoncinhiosBegin() { return dragoncinhios.begin(); }
+	list<cDragones*>::iterator getDragoncinhiosEnd() { return dragoncinhios.end(); }
+
+	list<cJinete*>::iterator getJinetecinhiosBegin() { return jinetecinhios.begin(); }
+	list<cJinete*>::iterator getJinetecinhiosEnd() { return jinetecinhios.end(); }
+
+	list<cVikingos*>::iterator getVikinguitosBegin() { return vikinguitos.begin(); }
+	list<cVikingos*>::iterator getVikinguitosEnd() { return vikinguitos.end(); }
+
 	list<cDragones*>& getListaDragones() { return dragoncinhios; }
 	list<cVikingos*>& getListaVikingos() { return vikinguitos; }
-	list <cJinete*>& getListaJinetes() { return jinetecinhios; }
+	list <cJinete*>& getListaJinetes() { return jinetecinhios;}
+
 };
 

@@ -3,6 +3,7 @@
 #include "cArmas.h"
 #include "cAtaque.h"
 
+#include <sstream>
 
 cArmas* cVikingos::getArma() {	
 	if (this->arma == nullptr)
@@ -15,6 +16,52 @@ cArmas* cVikingos::getArma() {
 cVikingos::posicion cVikingos::getPos()
 {
 	return this->pos;
+}
+
+string cVikingos::getNombre()
+{
+	return nombre;
+}
+
+string cVikingos::toStringV() const
+{
+
+	stringstream ss;
+	ss << endl;
+	ss << "Vikingo: " << nombre << " " << apellido << ", ";
+	ss << "Vida: " << vida << ", ";
+	ss << "Fuerza: " << fuerza << ", ";
+	
+	ss << "Posicion: ";	
+	switch (pos) {
+	case granjero:
+		ss << "Granjero, ";
+		break;
+	case pescador:
+		ss << "Pescador, ";
+		break;
+	case carpintero:
+		ss << "Carpintero, ";
+		break;
+	case herrero:
+		ss << "Herrero, ";
+		break;
+	case guerrero:
+		ss << "Guerrero, ";
+		break;
+	}
+	
+	ss << "Dragones derrotados: " << contador_dragones << ", ";
+	ss << "Arma: ";
+	if (arma != nullptr) {
+		ss << arma->toStringAr();
+	}
+	else {
+		ss << "No tiene ningun arma equipada";
+	}
+	ss << endl;
+	return ss.str();
+
 }
 
 
@@ -77,7 +124,7 @@ void cVikingos::setArma(cArmas* p)
 	
 }
 
-void cVikingos::atacar_dragones(cDragones* objetivo)
+bool cVikingos::atacar_dragones(cDragones* objetivo)
 {
 	/* SI EL VIKINGO NO TIENE ARMA, ES UN HERRERO Y SE ESTÁ POR PEGAR CON UN DRAGON, SE LA CRAFTEA */
 	try {
@@ -85,7 +132,7 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 	}
 	catch (exception* e)
 	{
-		cout << e->what();
+		cout << e->what() << endl;
 		if (this->pos == cVikingos::herrero)
 		{
 			cArmas* nuevaArma = new cArmas(300);
@@ -96,19 +143,27 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 			cArmas* punios = new cArmas(80);
 			this->setArma(punios);
 		}
+		delete e;
+	}
+	try {
+		objetivo->getpAtaque();
+	}
+	catch (const exception* e2)
+	{
+		cout << e2->what() << endl;
+		cAtaque* ataque_default2 = new cMordida();
+		objetivo->setAtaque(ataque_default2);
 	}
 
 
 	if (objetivo == nullptr)
 	{
 		throw new exception("No existe el dragon al que se quiere atacar");
-		return;
 	}
 
 	if (objetivo->getVivo() == false)
 	{
 		throw new exception("No se puede atacar un dragon que no este vivo!");
-		return;
 	}
 
 	int i = 1;
@@ -138,9 +193,12 @@ void cVikingos::atacar_dragones(cDragones* objetivo)
 		
 		i++;
 	}
-
-
-	return;
+	if (vida < 0)
+	{
+		return false;
+	}
+	contador_dragones++;
+	return true;
 }
 
 void cVikingos::trabajar()

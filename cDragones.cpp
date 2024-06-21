@@ -1,6 +1,9 @@
 #include "cDragones.h"
 #include "cAtaque.h"
+#include "iostream"
+#include <sstream>
 
+using namespace std;
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLASE PADRE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -98,6 +101,17 @@ void cDragones::setVida(int nueva_vida)
 
 }
 
+void cDragones::curar()
+{
+	vida = tamanio_dragon * 1000;
+}
+
+void cDragones::CriarDragonGrande()
+{
+	tamanio_dragon = cDragones::grande;
+	vida = 1000 * (cDragones::grande);
+}
+
 void cDragones::setAtaque(cAtaque* nuevo_ataque)
 {
 	if ( nuevo_ataque == nullptr)
@@ -106,6 +120,11 @@ void cDragones::setAtaque(cAtaque* nuevo_ataque)
 	}
 	/*LA VARIABLE PUNTERO DE 'cAtaque' DEL DRAGON, AHORA APUNTARÁ A UN OBJETO DE ESTA MISMA CLASE*/
 	pAtaque = nuevo_ataque;
+}
+
+bool cDragones::ataqueAprendible(cAtaque* p)
+{
+	return true;
 }
 
 cAtaque* cDragones::getpAtaque()
@@ -125,6 +144,60 @@ bool cDragones::getVivo()
 cDragones::tamanio cDragones::getTamanio()
 {
 	return tamanio_dragon;
+}
+
+string cDragones::toStringD() const
+{
+	stringstream ss;
+	ss << endl;
+	ss << "Nombre: " << nombre << ", ";
+	ss << "Vida: " << vida << ", ";
+	ss << "Caracteristica: " << caracteristica << ", ";
+	ss << "Color: " << color << ", ";
+	ss << "Estado: ";
+	if (estado == true)
+	{
+		ss << " Domado, ";
+	}
+	else {
+		ss << " Sin domar, ";
+	}
+
+	ss << "Ataque: ";
+	if (pAtaque == nullptr)
+	{
+		ss << "Ninguno, ";
+	}
+	else
+	{
+		ss << pAtaque->toStringA()<<", ";
+	}	
+
+	ss << "Tamanio: ";
+
+	switch (tamanio_dragon) {
+	case chico:
+		ss << "Chico";
+		break;
+	case mediano:
+		ss << "Mediano";
+		break;
+	case grande:
+		ss << "Grande";
+		break;
+	}
+	ss << ", ";
+	ss << "Vivo: ";
+	
+	if (vivo == true)
+	{
+		ss << " Si";
+    }
+	else {
+		ss << " No";
+	}
+	ss << endl;
+	return ss.str();
 }
 
 
@@ -159,6 +232,15 @@ void cDragonFuego::setAtaque(cAtaque* nuevo_ataque)
 
 }
 
+bool cDragonFuego::ataqueAprendible(cAtaque* p)
+{
+	cBolaDeFuego* aux = dynamic_cast<cBolaDeFuego*>(p);
+	if (aux != nullptr)
+		return true;
+
+	return false;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DRAGÓN DE AGUA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 cDragonAgua::cDragonAgua(string _nom, string _caracte, string _color) : cDragones(_nom, _caracte, _color) {}
@@ -189,6 +271,15 @@ void cDragonAgua::setAtaque(cAtaque* nuevo_ataque)
 
 }
 
+bool cDragonAgua::ataqueAprendible(cAtaque* p)
+{
+	cHidroImpulso* aux = dynamic_cast<cHidroImpulso*>(p);
+	if (aux != nullptr)
+		return true;
+
+	return false;
+}
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ DRAGÓN DE PIEDRA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 cDragonPiedra::cDragonPiedra(string _nom, string _caracte, string _color) : cDragones(_nom, _caracte, _color) {}
@@ -217,4 +308,13 @@ void cDragonPiedra::setAtaque(cAtaque* nuevo_ataque)
 	}
 	pAtaque = nuevo_ataque;
 
+}
+
+bool cDragonPiedra::ataqueAprendible(cAtaque* p)
+{
+	cPedrada* aux = dynamic_cast<cPedrada*>(p);
+	if (aux != nullptr)
+		return true;
+
+	return false;
 }

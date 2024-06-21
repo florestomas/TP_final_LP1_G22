@@ -6,13 +6,14 @@ using namespace std;
 
 class cVikingos;
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ATAQUE DE PIEDRA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CLASE PADRE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 class cAtaque
 {
 
 public:
 	 virtual int getDanio() = 0;
+	 string toStringA() const;
 
 	 cAtaque(const int danioo);
 	 virtual ~cAtaque();

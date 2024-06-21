@@ -21,11 +21,13 @@ public:
 	/*~~~~~~~~~~~~~ SETTERS ~~~~~~~~~~~~~*/
 	void setMontura(cDragones* nuevo_dragon);
 
-	void atacarDragones(cDragones* objetivo);
+	cDragones* atacarDragones(cDragones *&objetivo);
+	friend bool compararDragones(cJinete* jinete, cDragones* p);
 
 	cJinete(string nom, string ape, string apo, string fNc);
 	~cJinete();
 
+	string toStringJ() const;
 
 protected:
 	string nombre;

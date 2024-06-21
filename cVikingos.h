@@ -13,10 +13,12 @@ public:
 
 	void trabajar();
 	bool dragones_terminados();
-	void atacar_dragones(cDragones* objetivo);
+	bool atacar_dragones(cDragones* objetivo);
 	cArmas* getArma();
 	posicion getPos();
+	string getNombre();
 
+	string toStringV() const;
 
 	unsigned int getContDragones();
 	int getVida();
