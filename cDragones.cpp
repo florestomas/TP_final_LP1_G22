@@ -91,6 +91,11 @@ string cDragones::getNombre()
 
 void cDragones::setVida(int nueva_vida)
 {
+	if ( (vida+=nueva_vida) <= 0)
+	{
+		vida = 0;
+		return;
+	}
 	this->vida += nueva_vida;
 
 	if (this->vida <= 0)

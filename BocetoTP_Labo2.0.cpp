@@ -19,8 +19,6 @@
 - Tres aplicaciones de sobrecarga 
 - Tres tipos de constructores 
 - Getters y setters 
-
-FLATA:
 - Metodos "to-string" 
 
 */
@@ -120,7 +118,6 @@ int main() {
 				}
 				it4++;
 			}
-			/* ESTO ESTA RE HARDCODEADO */
 			delete e2;
 		}
 		
@@ -220,12 +217,13 @@ int main() {
 		cVikingos* auxV = nullptr;
 		cJinete* auxJ = nullptr;
 
+
+
 		cout << endl << "~~~~~ DRAGONES: ~~~~~" << endl;
 		while (it1 != IslaDeBerk.getDragoncinhiosEnd())
 		{
 			auxD = *it1;
 			cout<<auxD->toStringD();
-
 			it1++;
 		}
 

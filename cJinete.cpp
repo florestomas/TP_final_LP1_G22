@@ -183,7 +183,7 @@ cDragones* cJinete::atacarDragones(cDragones *&objetivo)
 		i++;
 	}
 
-	if (pDragon->getVida() < 0)
+	if (pDragon->getVida() <= 0)
 	{
 		cout << endl << "El dragon del jinete fallecio en batalla..." << endl;
 		pDragon->setMuerto();

@@ -100,6 +100,11 @@ void cVikingos::setContDragones(unsigned int bajas)
 
 void cVikingos::setVida(int nueva_vida)
 {
+	if ((vida+=nueva_vida) <= 0)
+	{
+		vida = 0;
+		return;
+	}
 	this->vida += nueva_vida;
 }
 
@@ -193,11 +198,17 @@ bool cVikingos::atacar_dragones(cDragones* objetivo)
 		
 		i++;
 	}
-	if (vida < 0)
+	if (vida <= 0)
 	{
+		cout << "El vikingo murio en batalla" << endl;
 		return false;
 	}
+
+	cout << endl << "El dragon enemigo fallecio en batalla..." << endl;
+	objetivo->setMuerto();
+	objetivo->baja();
 	contador_dragones++;
+	
 	return true;
 }
 
