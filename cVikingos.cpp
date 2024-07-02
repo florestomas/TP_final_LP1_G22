@@ -216,22 +216,25 @@ void cVikingos::trabajar()
 {
 	if (pos == granjero)
 	{
-		cout << "Trabajando en la granja..." << endl;
+		cout << endl << "Trabajando en la granja..." << endl;
 		return;
 	}
 	else if (pos == pescador)
 	{
-		cout << "Pescando..." << endl;
+		cout << endl << "Pescando..." << endl;
 		return;
 	}
 	else if (pos == carpintero)
 	{
-		cout << "Trabajando en la carpinteria..." << endl;
+		cout << endl << "Trabajando en la carpinteria..." << endl;
 		return;
 	}
-	
-		cout << "Trabajando en la fragua..." << endl;
-		
+	else if (pos == guerrero)
+	{
+		cout << endl << "Saliendo en busca de dragones..." << endl;
+		return;
+	}
+		cout << endl << "Trabajando en la fragua..." << endl;
 }
 
 

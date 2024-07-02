@@ -70,6 +70,7 @@ bool cIsla::MonturaDoble(cDragones* drake)
 {
 
 	/* REVISO QUE EL DRAGON ADMITA 2 JINETES (SEA GRANDE) */
+
 	if (drake->getTamanio() != cDragones::grande)
 	{
 		cout << "El dragon no admite montura doble" << endl;
@@ -100,7 +101,7 @@ bool cIsla::MonturaDoble(cDragones* drake)
 		it2++;
 	}
 
-	cout << "El dragon tiene " << contJinetes << " jinetes, es posible asignarle uno nuevo!" << endl;
+	cout << endl << "El dragon tiene " << contJinetes << " jinetes, es posible asignarle uno nuevo!" << endl;
 	return true;
 
 }
@@ -144,4 +145,110 @@ void cIsla::imprimirJinetes()
 		it++;
 	}
 }
+
+int cIsla::NumerarJinetes()
+{
+	list<cJinete*>::iterator it = jinetecinhios.begin();
+	cJinete* aux = nullptr;
+	int cont = 1;
+	while (it != jinetecinhios.end())
+	{
+		aux = *it;
+		cout <<cont<<") " << aux->getNombre() << endl;
+		cont++;
+		it++;
+	}
+	return cont;
+}
+int cIsla::NumerarVikingos()
+{
+	list<cVikingos*>::iterator it = vikinguitos.begin();
+	cVikingos* aux = nullptr;
+	int cont = 1;
+	while (it != vikinguitos.end())
+	{
+		aux = *it;
+		cout <<cont<<") " << aux->getNombre() << endl;
+		cont++;
+		it++;
+	}
+	return cont;
+}
+int cIsla::NumerarDragones()
+{
+	list<cDragones*>::iterator it = dragoncinhios.begin();
+	cDragones* aux = nullptr;
+	int cont = 1;
+	while (it != dragoncinhios.end())
+	{
+		aux = *it;
+		cout << cont << ") " << aux->getNombre() << endl;
+		cont++;
+		it++;
+	}
+	return cont;
+}
+
+int cIsla::NumerarDragonesPelea(cDragones* p)
+{
+	list<cDragones*>::iterator it = dragoncinhios.begin();
+	cDragones* aux = nullptr;
+	int cont = 1;
+	while (it != dragoncinhios.end())
+	{
+		aux = *it;
+		if (aux != p)
+		{
+			cout << cont << ") " << aux->getNombre() << endl;
+			cont++;
+		}
+		it++;
+	}
+	return cont;
+}
+
+
+cDragones* cIsla::AccederDragon(int pos)
+{
+	list<cDragones*>::iterator it = dragoncinhios.begin();
+	advance(it, pos);
+
+	return *it;
+}
+
+cDragones* cIsla::AccederDragonPelea(int pos, cDragones* saltear)
+{
+	list<cDragones*>::iterator it = dragoncinhios.begin();
+
+	int cont = 0;
+	cDragones* aux;
+	while (it != dragoncinhios.end())
+	{
+		aux = *it;
+		if (aux != saltear)
+			cont++;
+		
+		if (cont == pos)
+			break;
+		it++;
+	}
+	return *it;
+}
+
+cVikingos* cIsla::AccederVikingo(int pos)
+{
+	list<cVikingos*>::iterator it = vikinguitos.begin();
+	advance(it, pos);
+
+	return *it;
+}
+
+cJinete* cIsla::AccederJinete(int pos)
+{
+	list<cJinete*>::iterator it = jinetecinhios.begin();
+	advance(it, pos);
+
+	return *it;
+}
+
 

@@ -48,5 +48,15 @@ public:
 	list<cVikingos*>& getListaVikingos() { return vikinguitos; }
 	list <cJinete*>& getListaJinetes() { return jinetecinhios;}
 
+	int NumerarJinetes();
+	int NumerarVikingos();
+	int NumerarDragones();
+	int NumerarDragonesPelea(cDragones* p);
+
+	cDragones* AccederDragon(int pos);
+	cDragones* AccederDragonPelea(int pos, cDragones* saltear);
+	cVikingos* AccederVikingo(int pos);
+	cJinete* AccederJinete(int pos);
+
 };
 

@@ -135,7 +135,7 @@ cDragones* cJinete::atacarDragones(cDragones *&objetivo)
 	}
 	catch (const exception* e)
 	{
-		cout << e->what() <<" (dragon aliado) " << endl
+		cout << endl << e->what() <<" (dragon aliado) " << endl
 			;
 		cAtaque* ataque_default1 = new cMordida();
 		pDragon->setAtaque(ataque_default1);
@@ -155,14 +155,14 @@ cDragones* cJinete::atacarDragones(cDragones *&objetivo)
 
 	int i = 1;
 
-	cout << " Ataquemos a los dragones! " << endl;//xd
+	cout << endl << " Ataquemos a los dragones! " << endl;//xd
 
 
 
-	while ((pDragon->getVida() > 0) && (objetivo->getVida() > 0))
+	while (pDragon->getVida() > 0)
 	{
 		cout << endl << "Turno " << i << ": " << endl;
-		cout << "La vida del dragon enemigo es: " << objetivo->getVida() << " y la vida del jinete con el dragon es: " << pDragon->getVida() << endl;
+		cout << endl <<"La vida del dragon enemigo es: " << objetivo->getVida() << " y la vida del jinete con el dragon es: " << pDragon->getVida() << endl;
 
 
 		/* Hay que aclarar que el 'setVida()' a la vida actual le suma lo que se le pasa como parametro */
@@ -170,12 +170,14 @@ cDragones* cJinete::atacarDragones(cDragones *&objetivo)
 		cout << pDragon->getNombre() << " (Dragon aliado)";
 		/*A LA VIDA DEL OBJETIVO SE LE RESTAN EL DANIO INFLIGIDO POR EL DRAGON ALIADO*/
 		objetivo->setVida((-1) * (pDragon->getpAtaque()->getDanio()));
+		
+		if( objetivo->getVida() <= 0)
+			break;
 
 
-		cout << objetivo->getNombre() << " (Dragon enemigo) ";
+		cout << endl << objetivo->getNombre() << " (Dragon enemigo) ";
 		/* AL DRAGON ALIADO LE SETEO LA VIDA RESTANDOLE EL DAñO QUE LE INFLIGIERON */
 		pDragon->setVida((-1) * (objetivo->getpAtaque()->getDanio()));
-
 
 		cout << "La vida del dragon enemigo es: " << objetivo->getVida() << " y la vida del jinete con su dragon es: " << pDragon->getVida() << endl;
 
