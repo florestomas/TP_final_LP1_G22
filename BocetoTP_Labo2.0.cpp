@@ -277,9 +277,11 @@ int main() {
 				default:
 					cout << endl << "Se introdujo una opcion que no es valida" << endl;
 				}
+				
 				if (opcion4 == 4)
 					break;
 			}
+			break;
 		}
 
 		case 3:
